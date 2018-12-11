@@ -1,1 +1,1 @@
-eight puzzle game
+eight puzzle game with solver
