@@ -9,11 +9,10 @@
 When the tile is in the right position, the background color is blue. Otherwise, its background color is red.
 
 <img src="images/color.png" width=300>
-<br>
 ### Shuffle
 <br>
- The shuffle function will perform 20 random moves.
- ```javascript
+The shuffle function will perform 20 random moves.
+```javascript
  function shuffle() {
    clearTimers(solveTimeouts);
    var boardTiles = document.querySelectorAll('.tile');
@@ -27,10 +26,10 @@ When the tile is in the right position, the background color is blue. Otherwise,
      shuffleCounter++;
    }
  }
- ```
- ### Solve
- The solve function will solve the puzzle naively. I would optimize it with algorithms
- ```javascript
+```
+### Solve
+The solve function will solve the puzzle naively. I would optimize it with algorithms
+```javascript
  function solve() {
    clearTimers(shuffleTimeouts);
 
@@ -42,4 +41,4 @@ When the tile is in the right position, the background color is blue. Otherwise,
      solveTimeouts.push(setTimeout(moveTile, i*100, tiles[history.pop()-1], false));
    }
  }
- ```
+```
