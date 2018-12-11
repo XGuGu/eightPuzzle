@@ -8,6 +8,17 @@
 When the tile is in the right position, the background color is blue. Otherwise, its background color is red.
 
 <img src="images/color.png" width=300>
+
+```javascript
+function recolorTile(tile, tileId) {
+  if (tileId == tileMap[tileId].position) {
+    tile.classList.remove("error");
+  } else {
+    tile.classList.add("error");
+  }
+}
+```
+
 ### Shuffle
 
 The shuffle function will perform 20 random moves.
