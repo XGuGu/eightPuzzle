@@ -226,6 +226,19 @@ function game() {
     return newPuzzle;
   }
 
+  function getAllowedMoves() {
+    let allow = [];
+    for (var i = 0; i < this.dimension; i++) {
+      for (var j =0; j < this.dimension; j++) {
+        let grid = this.board[i][j];
+        if (this.getMove(grid) != null) {
+          allow.push(grid);
+        }
+      }
+    }
+    return allow;
+  }
+
   function visit() {
     let children = [];
     let allowed = this.getAllowedMoves();
@@ -239,6 +252,22 @@ function game() {
       }
     }
     return children;
+  }
+
+  function bfs() {
+    // debugger
+    // console.log("bfs");
+    let initState = this.getCopy();
+    initState.path = [];
+    let states = [initState];
+    while (states.length > 0) {
+      let state = states[0];
+      states.shift();
+      if (state.isDone()) {
+        return state.path;
+      }
+      states = states.concat(state.visit());
+    }
   }
 
   function checkSolution() {
