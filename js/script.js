@@ -213,6 +213,34 @@ function game() {
   //   }
   // }
 
+  function getCopy() {
+    let newPuzzle = new Puzzle(this.dimension)
+    for (var i = 0; i < this.dimension; i++) {
+      for (var j = 0; j < this.dimension; j++) {
+        newPuzzle.board[i][j] = this.board[i][j];
+      }
+    }
+    for (var i = 0; i < this.path.length; i++) {
+      newPuzzle.path.push(this.path[i]);
+    }
+    return newPuzzle;
+  }
+
+  function visit() {
+    let children = [];
+    let allowed = this.getAllowedMoves();
+    for (var i = 0; i < allowed.length; i++) {
+      let move = allowed[i];
+      if (move != this.lastMove) {
+        let newPuzzle = this.getCopy();
+        newPuzzle.move(move);
+        newPuzzle.path.push(move);
+        children.push(newPuzzle);
+      }
+    }
+    return children;
+  }
+
   function checkSolution() {
     if (tileMap.empty.position !== 9) return false;
 
