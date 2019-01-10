@@ -239,11 +239,11 @@ function game() {
     return allow;
   }
 
-  g() {
+  function g() {
     return this.path.length;
   }
 
-  h1() {
+  function h1() {
     let count = 0;
     for (var i = 0; i < this.dimension; i++) {
       for (var j = 0; j < this.dimension; j++) {
@@ -258,7 +258,7 @@ function game() {
     return count;
   }
 
-  h2() {
+  function h2() {
     // console.log(this.tiles.length)
     // console.log(distance)
     let distance = 0;
