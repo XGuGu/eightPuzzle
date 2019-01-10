@@ -239,6 +239,42 @@ function game() {
     return allow;
   }
 
+  g() {
+    return this.path.length;
+  }
+
+  h1() {
+    let count = 0;
+    for (var i = 0; i < this.dimension; i++) {
+      for (var j = 0; j < this.dimension; j++) {
+          let piece = this.board[i][j];
+          if (piece != 0) {
+              let originalLine = Math.floor((piece - 1) / this.dimension);
+              let originalColumn = (piece - 1) % this.dimension;
+              if (i != originalLine || j != originalColumn) count++;
+            }
+        }
+    }
+    return count;
+  }
+
+  h2() {
+    // console.log(this.tiles.length)
+    // console.log(distance)
+    let distance = 0;
+    for (var i = 0; i < this.dimension; i++) {
+      for (var j = 0; j < this.dimension; j++) {
+        let piece = this.board[i][j];
+        if (piece != 0) {
+            let originalLine = Math.floor((piece - 1) / this.dimension);
+            let originalColumn = (piece - 1) % this.dimension;
+            distance += Math.abs(i - originalLine) + Math.abs(j - originalColumn);
+        }
+      }
+    }
+    return distance;
+  }
+
   function visit() {
     let children = [];
     let allowed = this.getAllowedMoves();
@@ -268,6 +304,10 @@ function game() {
       }
       states = states.concat(state.visit());
     }
+  }
+
+  function dfs() {
+
   }
 
   function checkSolution() {
