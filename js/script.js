@@ -275,6 +275,32 @@ function game() {
     return distance;
   }
 
+  function aStar() {
+    let states = new MinHeap(null, function(a, b) {
+      return a.distance - b.distance;
+    });
+    this.path = [];
+    states.push({
+      puzzle: this,
+      distance: 0
+    });
+    while (states.size() > 0) {
+      let state = states.pop().puzzle;
+      if (state.isDone()) {
+        return state.path;
+      }
+      let children = state.visit();
+      for (var i = 0; i < children.length; i++) {
+        let child = children[i];
+        let f = child.g() + child.h2();
+        states.push({
+          puzzle: child,
+          distance: f
+        });
+      }
+    }
+  }
+
   function visit() {
     let children = [];
     let allowed = this.getAllowedMoves();
